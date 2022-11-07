@@ -1,7 +1,11 @@
-import Expenses from "./components/Expenses";
+import React, {useState} from "react";
+
+import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense.js";
+//import ExpenseFilter from "./components/Expenses/ExpenseFilter.js";
 
 function App() {
-  const expenses = [
+  let expenses = [
     {
       id: "e1",
       title: "Car Insurance",
@@ -28,10 +32,15 @@ function App() {
     }
   ];
 
+  const onAddNewExpenseHandler = (expenseData) => {
+    expenses.push(expenseData);
+    console.log(expenseData);
+    console.log(expenses);
+  };
+
   return (
     <div>
-      <h2>Let's get started!</h2>
-      <p>This is also Visible</p>
+      <NewExpense onAddNewExpense={onAddNewExpenseHandler}/>
       <Expenses expenseDetails = {expenses}/>
     </div>
   );
